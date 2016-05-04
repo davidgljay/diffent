@@ -29,7 +29,12 @@ func parseText(text string) (split []string) {
 	return
 }
 
-//TODO: Count terms for TFIF
+//Count terms for TFIF
+func countTerms (self *Document) {
+	for i := 0; i < len(self.words); i++ {
+		self.word_freq[self.words[i]]++
+	}
+}
 
 //TODO: Divide into n-grams and loop through
 

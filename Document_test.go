@@ -26,3 +26,12 @@ func TestNewDocument(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func TestCountTerms(t *testing.T) {
+	document := NewDocument("whales whales whales!")
+	countTerms(document)
+	if (document.word_freq["whales"] != 3) {
+		t.Error("Error in count terms function")
+		t.Fail()
+	}
+}
