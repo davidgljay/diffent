@@ -1,4 +1,4 @@
-package diffent
+package entropy
 
 import (
 	"testing";
