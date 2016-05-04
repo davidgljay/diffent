@@ -36,7 +36,30 @@ func countTerms (self *Document) {
 	}
 }
 
-//TODO: Divide into n-grams and loop through
+//Divide into n-grams and loop through
+func updateProbs (self *Document, docSet DocSet) {
+	for i := docSet.ngram-1; i < len(self.words); i++ {
+		word := self.words[i]
+
+		//Calculate the TFIF
+		wordTFIF := tfif(self.word_freq[word], docSet.words[word].freq)
+		Count backwards through ngram
+		for j := 1; j < docSet.ngram; j++ {
+			compword := self.words[i-j]
+			compTFIF := tfif(self.word_freq[word], docSet.words[word].freq)
+
+			//Update the probability with te 
+			docSet.words[word].prob_array[compword] += compTFIF
+			docSet.words[compword].prob_array[word] += wordTFIF
+		}
+	}
+}
+
+func tfif (docCount int32, setCount int32) (tfif float32) {
+	tfif = float32(docCount)/float32(setCount)
+	return
+}
+
 
 //TODO: Update probs
 

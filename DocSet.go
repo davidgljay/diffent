@@ -2,13 +2,14 @@ package entropy
 
 type DocSet struct {
 	documents []string
-	words []word
+	words map[string]word
+	ngram int
 }
 
 
 type word struct {
 	freq uint32
-	prob_array []probability
+	prob_array map[string]float32
 	mentions []mention
 }
 

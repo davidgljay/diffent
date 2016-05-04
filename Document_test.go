@@ -4,6 +4,7 @@ import (
 	"testing";
 	"strings";
 	"reflect";
+	// "fmt";
 	)
 
 func TestParse(t *testing.T) {
@@ -34,4 +35,7 @@ func TestCountTerms(t *testing.T) {
 		t.Error("Error in count terms function")
 		t.Fail()
 	}
+}
+
+func TestUpdateProbs(t *testing.T) {
 }
