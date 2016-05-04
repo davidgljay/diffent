@@ -8,12 +8,20 @@ import (
 
 
 type Document struct {
-	text string
+	words []string
 	word_freq map[string]uint32
 }
 
+//Initialize a document
+func NewDocument (text string) *Document {
+	document := new(Document)
+	document.words = parseText(text)
+	document.word_freq = make(map[string]uint32)
+	return document
+}
+
 //Function recieves sentence and breaks it up into words.
-func parse_text(text string) (split []string) {
+func parseText(text string) (split []string) {
 	r := regexp.MustCompile("[^a-zA-Z ]")
 	text = strings.ToLower(text)
 	text = r.ReplaceAllLiteralString(text,"")
