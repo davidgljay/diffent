@@ -42,11 +42,22 @@ func TestUpdateProbs(t *testing.T) {
 	docSet := NewDocSet(3)
 
 	//Set up Doc
-	doc := NewDoc("Whales whales whales are great!")
+	doc := NewDocument("Whales whales whales are great!")
 	countTerms(doc)
 	for i := 0; i < len(doc.words); i++ {
 		docSet.words[doc.words[i]] = NewWord(doc.words[i])
+		docSet.words[doc.words[i]].freq = 10
+	}
+	if (tfif(doc.word_freq["whales"],docSet.words["whales"].freq) != 0.3)  {
+		t.Error("Incorrect calculation of TFIF in update")
+		t.Fail()
 	}
 
 	//Test
+	updateProbs(doc, docSet)
+	if (docSet.words["whales"].prob_map["whales"] != 1.8) {
+		t.Error("Failure counting terms in updateProbs, should be 1.8")
+		t.Error(docSet.words["whales"].prob_map["whales"])
+		t.Fail()
+	}
 }
