@@ -38,4 +38,15 @@ func TestCountTerms(t *testing.T) {
 }
 
 func TestUpdateProbs(t *testing.T) {
+	//Set up DocSet
+	docSet := NewDocSet(3)
+
+	//Set up Doc
+	doc := NewDoc("Whales whales whales are great!")
+	countTerms(doc)
+	for i := 0; i < len(doc.words); i++ {
+		docSet.words[doc.words[i]] = NewWord(doc.words[i])
+	}
+
+	//Test
 }

@@ -8,15 +8,15 @@ import "container/list"
 //I can always convert to an array for analysis
 
 type DocSet struct {
-	documents list
+	documents list.List
 	words map[string]word
 	ngram int
 }
 
 type word struct {
 	freq uint32
-	prob_array map[string]float32
-	mentions list
+	prob_map map[string]float32
+	mentions list.List
 }
 
 type mention struct {
@@ -36,8 +36,8 @@ func NewDocSet(ngram int) (docset *DocSet) {
 	return
 }
 
-func NewWord(w string) (wrd *word) {
-	wrd.prob_array = make(map[string]float32)
+func NewWord(w string) (wrd word) {
+	wrd.prob_map = make(map[string]float32)
 	return wrd
 }
 
