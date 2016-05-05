@@ -9,7 +9,7 @@ import (
 
 func TestNewWord(t *testing.T) {
 	word := NewWord("test")
-	if (reflect.TypeOf(word).String() != "entropy.word") {
+	if (reflect.TypeOf(word).String() != "*entropy.word") {
 		t.Error("Error creating word: " + reflect.TypeOf(word).String())
 		t.Fail()
 	}

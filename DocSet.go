@@ -9,7 +9,7 @@ import "container/list"
 
 type DocSet struct {
 	documents list.List
-	words map[string]word
+	words map[string]*word
 	ngram int
 }
 
@@ -31,14 +31,16 @@ type probability struct {
 }
 
 func NewDocSet(ngram int) (docset *DocSet) {
-	docset.words = make(map[string]word)
+	docset = new(DocSet)
+	docset.words = make(map[string]*word)
 	docset.ngram = ngram
 	return
 }
 
-func NewWord(w string) (wrd word) {
+func NewWord(w string) (wrd *word) {
+	wrd = new(word)
 	wrd.prob_map = make(map[string]float32)
-	return wrd
+	return
 }
 
 func AddDoc(self *DocSet, doc string) {

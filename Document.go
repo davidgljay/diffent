@@ -37,31 +37,39 @@ func countTerms (self *Document) {
 }
 
 //Divide into n-grams and loop through
-func updateProbs (self *Document, docSet DocSet) {
+func updateProbs (self *Document, docSet *DocSet) {
+
+	//Start by counting through the first ngram of words and updating prob_maps
+	for i := 1; i < docSet.ngram-1; i++ {
+		iterateNgramAndUpdate(self, docSet, i, i+1)
+	}
+
+	//Next, move through each additional word, updating the prob_map for the words behind it
 	for i := docSet.ngram-1; i < len(self.words); i++ {
-		word := self.words[i]
-
-		//Calculate the TFIF
-		wordTFIF := tfif(self.word_freq[word], docSet.words[word].freq)
-		Count backwards through ngram
-		for j := 1; j < docSet.ngram; j++ {
-			compword := self.words[i-j]
-			compTFIF := tfif(self.word_freq[word], docSet.words[word].freq)
-
-			//Update the probability with te 
-			docSet.words[word].prob_array[compword] += compTFIF
-			docSet.words[compword].prob_array[word] += wordTFIF
-		}
+		iterateNgramAndUpdate(self, docSet, i, docSet.ngram)
 	}
 }
 
-func tfif (docCount int32, setCount int32) (tfif float32) {
+func iterateNgramAndUpdate(self * Document, docSet *DocSet, i int, jmax int) {
+		word := self.words[i]
+		//Calculate the TFIF
+		wordTFIF := tfif(self.word_freq[word], docSet.words[word].freq)
+		//Count backwards through ngram
+		for j := 1; j < jmax; j++ {
+			compword := self.words[i-j]
+			compTFIF := tfif(self.word_freq[word], docSet.words[word].freq)
+
+			//Update the probability with tfif
+			docSet.words[word].prob_map[compword] += compTFIF
+			docSet.words[compword].prob_map[word] += wordTFIF
+		}
+}
+
+func tfif (docCount uint32, setCount uint32) (tfif float32) {
 	tfif = float32(docCount)/float32(setCount)
 	return
 }
 
-
-//TODO: Update probs
 
 //TODO: Test if top
 
