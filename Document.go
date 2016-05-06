@@ -65,7 +65,7 @@ func iterateNgramAndUpdate(self * Document, docSet *DocSet, i int, jmax int) {
 		}
 }
 
-func tfif (docCount uint32, setCount uint32) (tfif float32) {
-	tfif = float32(docCount)/float32(setCount)
+func tfif (docCount uint32, setCount uint32) (tfif float64) {
+	tfif = float64(docCount)/float64(setCount)
 	return
 }
