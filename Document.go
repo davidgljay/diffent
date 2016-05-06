@@ -69,10 +69,3 @@ func tfif (docCount uint32, setCount uint32) (tfif float32) {
 	tfif = float32(docCount)/float32(setCount)
 	return
 }
-
-
-//TODO: Test if top
-
-//TODO: Calculate entropy
-
-//I'll need some document-level and some overall-level datastores. 
