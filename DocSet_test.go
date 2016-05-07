@@ -8,7 +8,7 @@ import (
 	)
 
 func TestNewWord(t *testing.T) {
-	word := NewWord("test")
+	word := NewWord()
 	if (reflect.TypeOf(word).String() != "*entropy.word") {
 		t.Error("Error creating word: " + reflect.TypeOf(word).String())
 		t.Fail()
@@ -24,7 +24,7 @@ func TestTestIfTop(t * testing.T) {
 	// testTop := make([]probability,11)
 	testTop := []probability {probability {"moby",0},probability {"dick",1},probability {"was",2},probability {"a",3},probability {"happy",4},probability {"whale",5},probability {"every",6},probability {"day",7},probability {"he",8},probability {"danced",9},probability {"contra",0}}
 	docSet := NewDocSet(3)
-	docSet.words["white"] = NewWord("white")
+	docSet.words["white"] = NewWord()
 	docSet.words["white"].prob_map["whales"] = 11
 
 	newTop := testIfTop(docSet, "white", "whales", testTop)
@@ -33,7 +33,7 @@ func TestTestIfTop(t * testing.T) {
 		t.Fail()
 	}
 
-	docSet.words["nothing"] = NewWord("nothing")
+	docSet.words["nothing"] = NewWord()
 	docSet.words["nothing"].prob_map["nada"] = -0.5
 
 	sameTop := testIfTop(docSet, "nothing", "nada", testTop)
@@ -45,7 +45,7 @@ func TestTestIfTop(t * testing.T) {
 
 func TestCalcEntropy(t * testing.T) {
 	docSet := NewDocSet(3)
-	docSet.words["test"] = NewWord("test")
+	docSet.words["test"] = NewWord()
 	docSet.words["test"].prob_map["one"] = 1
 	docSet.words["test"].prob_map["two"] = 2
 	docSet.words["test"].prob_map["three"] = 3

@@ -18,6 +18,7 @@ type DocSet struct {
 	documents list.List
 	words map[string]*word
 	ngram int
+	overall *word
 }
 
 type word struct {
@@ -28,6 +29,7 @@ type word struct {
 
 type mention struct {
 	ts uint64
+	numMentions uint64
 	entropy float64
 	top []probability
 }
@@ -47,11 +49,12 @@ func (a ByProb) Less(i, j int) bool { return a[i].prob > a[j].prob }
 func NewDocSet(ngram int) (docset *DocSet) {
 	docset = new(DocSet)
 	docset.words = make(map[string]*word)
+	docset.overall = NewWord()
 	docset.ngram = ngram
 	return
 }
 
-func NewWord(w string) (wrd *word) {
+func NewWord() (wrd *word) {
 	wrd = new(word)
 	wrd.prob_map = make(map[string]float64)
 	return
@@ -90,5 +93,3 @@ func calcEntropy(word *word) (entropy float64){
 //TODO: Iterate through docs again and get entropy calc
 
 //TODO: Output to file
-
-//TODO: Calculate entropy

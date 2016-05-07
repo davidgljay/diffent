@@ -45,7 +45,7 @@ func TestUpdateProbs(t *testing.T) {
 	doc := NewDocument("Whales whales whales are great!")
 	countTerms(doc)
 	for i := 0; i < len(doc.words); i++ {
-		docSet.words[doc.words[i]] = NewWord(doc.words[i])
+		docSet.words[doc.words[i]] = NewWord()
 		docSet.words[doc.words[i]].freq = 10
 	}
 	if (tfif(doc.word_freq["whales"],docSet.words["whales"].freq) != 0.3)  {
