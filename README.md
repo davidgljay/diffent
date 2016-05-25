@@ -4,11 +4,11 @@ This project is an experiment in analyzing the differential entropy of natural l
 
 The package is still under development, and will perform the following steps:
 
-1) Import data from an arbitrary number of raw text files.
-2) Identify a timestamp for each file using first date found.
-3) Preprocess that text using TFIF.
-4) Iterate through n-grams within each file and perform an entropy calculation (see below).
-5) Export the resulting timeline of entropy values for analysis.
+1. Import data from an arbitrary number of raw text files.
+2. Identify a timestamp for each file using first date found.
+3. Preprocess that text using TFIF.
+4. Iterate through n-grams within each file and perform an entropy calculation (see below).
+5. Export the resulting timeline of entropy values for analysis.
 
 ##Entropy Calculation
 Shifts in framing over time are often significant. If the word "tax" is likely to appear in the phrase "tax reform" and 
