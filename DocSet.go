@@ -45,6 +45,12 @@ func (a ByProb) Len() int           { return len(a) }
 func (a ByProb) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
 func (a ByProb) Less(i, j int) bool { return a[i].prob > a[j].prob }
 
+func main() {
+	//Import docs, create a document for each doc.
+	//Iterate through docs and call countTerms
+	//Iterate through docs again and call updateProbs, then TestIfTop and calculateEntropy
+	//Add resulting entropy and top to a file.
+}
 
 func NewDocSet(ngram int) (docset *DocSet) {
 	docset = new(DocSet)
@@ -92,4 +98,4 @@ func calcEntropy(word *word) (entropy float64){
 
 //TODO: Iterate through docs again and get entropy calc
 
-//TODO: Output to file
+//TODO: Import docset
